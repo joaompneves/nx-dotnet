@@ -39,6 +39,7 @@ export default async function runExecutor(
   const majorVersion = semver.major(sdkVersion);
 
   const nxProjectConfiguration = getExecutedProjectConfiguration(context);
+  console.log(JSON.stringify({ context, nxProjectConfiguration }, null, 2));
   const projectFilePath = await getProjectFileForNxProject(
     nxProjectConfiguration,
   );

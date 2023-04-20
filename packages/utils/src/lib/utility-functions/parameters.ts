@@ -27,15 +27,15 @@ export function getParameterString(
 export function getSpawnParameterArray(
   parameters: Record<string, boolean | string>,
 ): string[] {
-  return Object.entries(parameters).reduce((acc, [flag, value]) => {
-    if (typeof value === 'boolean' || !value) {
-      if (value) {
-        return [...acc, `--${flag}`];
-      } else {
-        return acc;
-      }
+  const spawnArray: string[] = [];
+  for (const [key, value] of Object.entries(parameters)) {
+    if (typeof value === 'boolean' && value) {
+      spawnArray.push(`--${key}`);
     } else {
-      return [...acc, `--${flag}`, value.toString()];
+      spawnArray.push(`--${key}`, value.toString());
     }
+  }
+  return Object.entries(parameters).reduce((acc, [flag, value]) => {
+    return [...acc, `--${flag}`, value.toString()];
   }, new Array<string>());
 }
