@@ -35,7 +35,7 @@ export default async function runExecutor(
   dotnetClient: DotNetClient = new DotNetClient(dotnetFactory()),
 ) {
   const sdkVersion = dotnetClient.getSdkVersion();
-  const forceToolUsage = semver.satisfies(sdkVersion, '6.0.0 - 6.0.203');
+  const forceToolUsage = semver.gte(sdkVersion, '6.0.0');
   const majorVersion = semver.major(sdkVersion);
 
   const nxProjectConfiguration = getExecutedProjectConfiguration(context);
